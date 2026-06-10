@@ -45,7 +45,6 @@ Actualmente el repositorio contiene:
 ## Requisitos
 
 - Python 3.10 o superior
-- Linux (recomendado)
 - Conexión a internet para instalar dependencias
 
 ---
@@ -62,12 +61,6 @@ Activar el entorno virtual:
 
 ```bash
 source .venv/bin/activate
-```
-
-Al activarse correctamente debería aparecer algo similar a:
-
-```text
-(.venv) usuario@equipo:~/redes-pokemon$
 ```
 
 ---
