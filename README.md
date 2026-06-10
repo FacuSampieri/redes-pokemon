@@ -1,34 +1,125 @@
-# Clasificación de Tipos de Pokemon con Redes Neuronales
+# Clasificación de Tipos Pokémon mediante Redes Neuronales
 
-Este proyecto consiste en el desarrollo de una red neuronal profunda diseñada para clasificar imágenes de Pokemon de la primera generación según su tipo principal (Fuego, Agua, Planta, etc.).
+## Descripción
 
-## Objetivo
+Este proyecto tiene como objetivo desarrollar un sistema de clasificación automática de tipos Pokémon utilizando técnicas de Deep Learning y Transfer Learning sobre modelos preentrenados.
 
-El objetivo principal es aplicar técnicas de aprendizaje profundo (Deep Learning) y visión por computadora para identificar patrones visuales que caracterizan a los diferentes tipos de Pokemon, utilizando la arquitectura de PyTorch.
+La propuesta consiste en construir un pipeline completo que abarque:
 
-## Estructura del Proyecto
+Preparación y procesamiento del dataset.
+Aplicación de técnicas de data augmentation.
+Particionado reproducible de los datos.
+Entrenamiento de redes neuronales convolucionales preentrenadas.
+Fine-tuning de modelos seleccionados.
+Evaluación y comparación de resultados mediante métricas de clasificación.
 
-- `data/`: Contiene los scripts y notebooks para la descarga y preparación del dataset.
-  - `01-preparacion-dataset.ipynb`: Notebook principal para la descarga y preprocesamiento de imágenes.
-  - `readme.md`: Información detallada sobre las fuentes de datos.
-- `requirements.txt`: Lista de dependencias necesarias para ejecutar el proyecto.
+El dataset utilizado contiene imágenes de Pokémon de la primera generación asociadas a su tipo principal, permitiendo abordar un problema de clasificación multiclase.
 
-## Dataset
+Actualmente el repositorio contiene:
 
-Se utilizan dos fuentes principales de Kaggle:
-1. **Información Tabular:** Para obtener las etiquetas (tipos) correctas de cada Pokemon.
-2. **Imágenes:** Un conjunto de datos con miles de imágenes de Pokemon organizadas por nombre.
+- Dataset final procesado.
+- Imágenes organizadas por Pokémon.
+- Script de carga y preparación de datos para PyTorch.
+- Definición de transformaciones y particionado reproducible.
+
+---
+
+## Estructura del proyecto
+
+```text
+.
+├── data/
+│   ├── pokemon_gen1_dataset.csv
+│   └── PokemonData/
+│       ├── Abra/
+│       ├── Aerodactyl/
+│       ├── ...
+│
+├── dataset_loader.py
+├── requirements.txt
+└── README.md
+```
+
+---
 
 ## Requisitos
 
-Para instalar las dependencias necesarias, ejecuta:
+- Python 3.10 o superior
+- Linux (recomendado)
+- Conexión a internet para instalar dependencias
+
+---
+
+## Crear entorno virtual
+
+Desde la raíz del proyecto:
+
+```bash
+python3 -m venv .venv
+```
+
+Activar el entorno virtual:
+
+```bash
+source .venv/bin/activate
+```
+
+Al activarse correctamente debería aparecer algo similar a:
+
+```text
+(.venv) usuario@equipo:~/redes-pokemon$
+```
+
+---
+
+## Instalar dependencias
+
+Con el entorno virtual activado:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Cómo empezar
+---
 
-1. Dirígete a la carpeta `data/`.
-2. Ejecuta el notebook `01-preparacion-dataset.ipynb` para preparar los datos.
-3. (Próximamente) Entrenamiento del modelo en la carpeta `dev/`.
+## Ejecutar el script
+
+Desde la raíz del proyecto:
+
+```bash
+python dataset_loader.py
+```
+
+El script realizará las siguientes tareas:
+
+- Carga del dataset desde el archivo CSV.
+- Creación de etiquetas numéricas para cada tipo Pokémon.
+- Definición de transformaciones para entrenamiento y evaluación.
+- División estratificada del dataset en:
+  - 70% entrenamiento
+  - 15% validación
+  - 15% prueba
+- Creación de los objetos Dataset de PyTorch.
+- Creación de los DataLoader correspondientes.
+- Verificación de dimensiones y rangos de los tensores generados.
+
+---
+
+## Desactivar el entorno virtual
+
+Una vez finalizado el trabajo:
+
+```bash
+deactivate
+```
+
+---
+
+## Tecnologías utilizadas
+
+- Python
+- PyTorch
+- Torchvision
+- Pandas
+- Scikit-learn
+- Pillow
