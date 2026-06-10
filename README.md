@@ -29,7 +29,7 @@ Actualmente el repositorio contiene:
 ```text
 .
 ├── data/
-│   ├── pokemon_gen1_dataset.csv
+│   ├── pokemon_dataset.csv
 │   └── PokemonData/
 │       ├── Abra/
 │       ├── Aerodactyl/
