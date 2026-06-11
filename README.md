@@ -19,8 +19,9 @@ Actualmente el repositorio contiene:
 
 - Dataset final procesado.
 - Imágenes organizadas por Pokémon.
-- Script de carga y preparación de datos para PyTorch.
-- Definición de transformaciones y particionado reproducible.
+- `dataset_loader.py`: Script de carga y preparación de datos para PyTorch. Detecta automáticamente si se procesaron las imágenes (sin fondo) y las utiliza.
+- `dev/01_remove_background.ipynb`: Notebook para eliminar el fondo de las imágenes (Opcional pero recomendado para Entrega 3).
+- `dev/02_model_training.ipynb`: Notebook con el entrenamiento, experimentación y evaluación de modelos (Core de la Entrega 3).
 
 ---
 
@@ -30,10 +31,12 @@ Actualmente el repositorio contiene:
 .
 ├── data/
 │   ├── pokemon_dataset.csv
-│   └── PokemonData/
-│       ├── Abra/
-│       ├── Aerodactyl/
-│       ├── ...
+│   └── PokemonData/              # Imágenes originales
+│   └── PokemonDataNoBG/          # Imágenes sin fondo (generadas por el notebook 01)
+│
+├── dev/
+│   ├── 01_remove_background.ipynb
+│   └── 02_model_training.ipynb
 │
 ├── dataset_loader.py
 ├── requirements.txt

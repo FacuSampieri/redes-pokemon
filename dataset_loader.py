@@ -29,6 +29,14 @@ torch.manual_seed(SEED)
 
 DATASET_DIR = "data"
 
+# Carpeta de imágenes (se usa PokemonDataNoBG si existe, sino PokemonData)
+IMAGES_SUBDIR = "PokemonData"
+if os.path.exists(os.path.join(DATASET_DIR, "PokemonDataNoBG")):
+    IMAGES_SUBDIR = "PokemonDataNoBG"
+    print(f"INFO: Usando imágenes preprocesadas en {IMAGES_SUBDIR}")
+else:
+    print(f"INFO: Usando imágenes originales en {IMAGES_SUBDIR}")
+
 CSV_PATH = os.path.join(
     DATASET_DIR,
     "pokemon_dataset.csv"
@@ -171,10 +179,21 @@ class PokemonDataset(Dataset):
 
         row = self.dataframe.iloc[idx]
 
-        image_path = os.path.join(
-            self.root_dir,
-            row["image_path"]
-        )
+        # Si usamos imágenes sin fondo, intentamos usar el path sin fondo
+        original_path = os.path.join(self.root_dir, row["image_path"])
+        
+        if IMAGES_SUBDIR == "PokemonDataNoBG":
+            nobg_path = row["image_path"].replace("PokemonData", "PokemonDataNoBG")
+            nobg_path = os.path.splitext(nobg_path)[0] + ".png"
+            full_nobg_path = os.path.join(self.root_dir, nobg_path)
+            
+            # Si el archivo sin fondo existe, lo usamos. Si no, usamos el original.
+            if os.path.exists(full_nobg_path):
+                image_path = full_nobg_path
+            else:
+                image_path = original_path
+        else:
+            image_path = original_path
 
         image = Image.open(
             image_path
