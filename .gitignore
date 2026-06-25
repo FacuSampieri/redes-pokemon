@@ -1,0 +1,22 @@
+# Entornos y caché
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Dataset pesado: no versionar imágenes
+data/raw/
+data/processed/
+*.jpg
+*.jpeg
+*.png
+
+# Excepción para assets chicos de producción
+!prod/pokemons/*.png
+
+# Archivos locales
+.env
+.DS_Store
+
+# Kaggle
+kaggle.json
